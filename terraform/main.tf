@@ -8,8 +8,18 @@ variable "environment" {
   default     = "development"
 }
 
+variable "prod_count" {
+  type = number
+  default = 4
+}
+
+variable "dev_count" {
+  type = number
+  default = 2
+}
+
 locals {
-  bucket_count = var.environment == "production" ? 4 : 2
+  bucket_count = var.environment == "production" ? var.prod_count : var.dev_count
 }
 
 provider "random" {}
