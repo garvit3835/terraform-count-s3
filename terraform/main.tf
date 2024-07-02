@@ -21,10 +21,10 @@ resource "random_string" "example-1" {
 
 resource "aws_s3_bucket" "example" {
   count  = local.bucket_count
-  bucket = "${random_string.example-1.result}-${count.index}"
+  bucket = "${lower(random_string.example-1.result)}"
 
   tags = {
-    Name = "${random_string.example-1.result}-${count.index}"
+    Name = "${lower(random_string.example-1.result)}"
   }
 }
 
