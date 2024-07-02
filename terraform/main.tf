@@ -21,7 +21,7 @@ resource "random_string" "example-1" {
 
 resource "aws_s3_bucket" "example" {
   count  = local.bucket_count
-  bucket = "my-tf-test-bucket-${count.index}"
+  bucket = "${random_string.example-1.result}-${count.index}"
 
   tags = {
     Name = "${random_string.example-1.result}-${count.index}"
