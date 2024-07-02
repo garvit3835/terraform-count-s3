@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-west-2" # Specify the AWS region
+  region = "us-west-2"
 }
 
 variable "environment" {
@@ -17,6 +17,16 @@ resource "aws_s3_bucket" "example" {
   bucket = "my-tf-test-bucket-${count.index}"
 
   tags = {
-    Name        = "bucket-${count.index}"
+    Name = "bucket-${count.index}"
   }
+}
+
+# Output the environment variable to verify its value
+output "environment" {
+  value = var.environment
+}
+
+# Output the number of buckets to be created
+output "bucket_count" {
+  value = local.bucket_count
 }
